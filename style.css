@@ -581,6 +581,191 @@ color: #111827;
   background: linear-gradient(135deg, var(--accent-petrol), var(--accent-aqua));
   color: #021014;
 }
+
+/* ====== TABELLA MOBILE (PROGRAMMI) ====== */
+
+.plan-matrix-mobile {
+  display: none;
+  margin-top: 1.8rem;
+  padding: 1.3rem 1.1rem;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.14), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(59, 130, 246, 0.1), transparent 40%),
+    rgba(9, 12, 20, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+}
+
+.consult-table-mobile {
+  display: none;
+  margin-top: 1.4rem;
+  padding: 1.25rem 1.1rem;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 0% 20%, rgba(236, 72, 153, 0.12), transparent 45%),
+    radial-gradient(circle at 90% 0%, rgba(94, 234, 212, 0.14), transparent 40%),
+    rgba(9, 12, 20, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+}
+
+.consult-table-head {
+  margin-bottom: 0.9rem;
+}
+
+.matrix-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.matrix-eyebrow {
+  color: #a5f3fc;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  margin: 0 0 0.2rem 0;
+}
+
+.plan-matrix-mobile h3,
+.consult-table-head h3 {
+  margin: 0 0 0.2rem 0;
+  color: #e2e8f0;
+}
+
+.matrix-sub {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+}
+
+.matrix-pulse {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.55), rgba(56, 189, 248, 0.45));
+  position: relative;
+  box-shadow: 0 0 30px rgba(45, 212, 191, 0.5);
+  animation: floatPulse 3s ease-in-out infinite;
+}
+
+@keyframes floatPulse {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 28px rgba(45, 212, 191, 0.6);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 0 42px rgba(56, 189, 248, 0.7);
+  }
+}
+
+.matrix-grid,
+.consult-grid {
+  display: grid;
+  gap: 0.65rem;
+  position: relative;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.matrix-row,
+.consult-row {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr 1.1fr;
+  gap: 0.4rem;
+  padding: 0.75rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  scroll-snap-align: start;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.matrix-row--head,
+.consult-row--head {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(45, 212, 191, 0.12));
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 10px 32px rgba(14, 165, 233, 0.15);
+}
+
+.matrix-row:not(.matrix-row--head):hover,
+.consult-row:not(.consult-row--head):hover {
+  transform: translateY(-3px);
+  border-color: rgba(45, 212, 191, 0.55);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.matrix-row.is-pressed,
+.consult-row.is-pressed {
+  transform: translateY(-1px) scale(0.995);
+  border-color: rgba(94, 234, 212, 0.65);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.5);
+}
+
+.matrix-cell,
+.consult-cell {
+  color: #e2e8f0;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.matrix-cell--label,
+.consult-cell--label {
+  color: #a5f3fc;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.matrix-cell--base { color: #cbd5e1; }
+.matrix-cell--premium { color: #a7f3d0; }
+.consult-cell--time { color: #fcd34d; font-weight: 700; }
+
+.matrix-cell--glow {
+  position: relative;
+}
+
+.matrix-cell--glow::before {
+  content: "";
+  position: absolute;
+  inset: -6px -8px;
+  border-radius: 12px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.16), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.matrix-row:hover .matrix-cell--glow::before,
+.matrix-row:focus-within .matrix-cell--glow::before {
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .plan-matrix-mobile,
+  .consult-table-mobile {
+    display: block;
+  }
+
+  .matrix-grid,
+  .consult-grid {
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    padding-bottom: 0.5rem;
+  }
+
+  .matrix-row,
+  .consult-row {
+    grid-template-columns: 0.9fr 1fr 1fr;
+  }
+}
+
 /* ==========================================================
    TABELLA COMPARATIVA VERSIONE PREMIUM (CARDS)
    ========================================================== */
