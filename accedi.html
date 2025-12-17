@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accedi | Leonardo Santini</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER (ACTIVE SU ACCEDI) -->
+ 
+ 
+
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-image-wrapper">
+          <img src="logo-ls.png" alt="Leonardo Santini Logo" class="logo-image">
+        </div>
+        <div class="logo-text-group">
+          <span class="logo-text">Leonardo Santini</span>
+          <span class="logo-sub">Online Fitness Coaching</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <ul>
+
+			<li><a href="index.html" class="active">Home</a></li>
+          <li><a href="chi-sono.html">Chi sono</a></li>
+          <li><a href="index.html#come-funziona">Come funziona</a></li>
+          <li><a href="index.html#programmi">Programmi</a></li>
+          <li><a href="contenuti-gratuiti.html">Contenuti gratuiti</a></li>
+          <li><a href="accedi.html">Accedi</a></li>
+          <li><a href="consulenza.html"class="btn-nav active">Consulenza gratuita</a></li>
+        </ul>
+      </nav>
+
+      <button class="burger" aria-label="Apri menù">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+    <!-- AREA CLIENTI INTEGRATA -->
+    <section class="section section-light client-area-section">
+      <div class="container">
+        <div class="section-header center">
+          <p class="eyebrow">Area clienti</p>
+          <h2>Accedi alla tua area personale.</h2>
+          <p class="section-subtitle">
+            Inserisci il tuo <strong>Nome e Cognome</strong> esattamente come li hai comunicati
+            e verrai reindirizzato automaticamente alla tua pagina dedicata.
+          </p>
+        </div>
+
+        <div class="client-area-wrapper">
+          <header class="client-logo-header">
+            <!-- Quando hai il logo specifico per l'area clienti, sostituisci src -->
+            <img src="logo-ls.png" alt="Leonardo Santini Fitness Coach" class="client-logo" />
+          </header>
+
+          <main class="client-card">
+            <h1>Area Clienti</h1>
+
+            <p class="client-subtitle">
+              Inserisci qui sotto il tuo <strong>Nome e Cognome</strong> per accedere alla tua area personale.
+            </p>
+
+            <label for="nomeCognome" class="client-label">Nome e cognome</label>
+            <input
+              id="nomeCognome"
+              type="text"
+              class="client-input"
+              placeholder="Es. Mario Rossi"
+            />
+
+            <p class="client-hint">
+              Il sistema convertirà automaticamente il tuo nome in formato
+              <span>nome-cognome</span>.
+            </p>
+
+            <button type="button" class="btn btn-primary btn-full client-btn" onclick="vaiAreaClienti()">
+              Entra nella tua area
+            </button>
+
+            <p class="client-disclaimer">
+              Assicurati che il tuo <strong>Nome Cognome</strong> sia scritto correttamente.
+            </p>
+          </main>
+
+          <p class="client-footer-note">
+            © 2025 Leonardo Santini • Fitness Coach
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Leonardo Santini. Tutti i diritti riservati.</p>
+      <div class="footer-links">
+        <a href="index.html#come-funziona">Come funziona</a>
+        <a href="index.html#programmi">Programmi</a>
+        <a href="contenuti-gratuiti.html">Contenuti gratuiti</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Stessa logica della pagina che mi hai passato
+    const BASE_URL = "https://leonardo-santini.my.canva.site/"; // aggiorna se necessario
+
+    function normalizzaNome(valore) {
+      let v = valore.trim().toLowerCase();
+      v = v.replace(/\s+/g, "-");
+      v = v.replace(/[^a-z0-9\-]/g, "");
+      return v;
+    }
+
+    function vaiAreaClienti() {
+      const input = document.getElementById("nomeCognome");
+      const norm = normalizzaNome(input.value);
+
+      if (!norm) {
+        alert("Inserisci il tuo Nome e Cognome.");
+        input.focus();
+        return;
+      }
+
+      window.location.href = BASE_URL + norm;
+    }
+  </script>
+</body>
+</html>

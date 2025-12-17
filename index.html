@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leonardo Santini | Online Fitness Coaching</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- GSAP & SCROLLTRIGGER -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- LOTTIE PLAYER -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+
+<body class="page-home">
+
+  <!-- HEADER (IDENTICO AL TUO) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-image-wrapper">
+          <img src="logo-ls.png" alt="Leonardo Santini Logo" class="logo-image">
+        </div>
+        <div class="logo-text-group">
+          <span class="logo-text">Leonardo Santini</span>
+          <span class="logo-sub">Online Fitness Coaching</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="chi-sono.html">Chi sono</a></li>
+          <li><a href="#come-funziona">Come funziona</a></li>
+          <li><a href="#programmi">Programmi</a></li>
+          <li><a href="contenuti-gratuiti.html">Contenuti gratuiti</a></li>
+          <li><a href="accedi.html">Accedi</a></li>
+          <li><a href="consulenza.html" class="btn-nav">Consulenza gratuita</a></li>
+        </ul>
+      </nav>
+
+      <button class="burger" aria-label="Apri menù">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+    <!-- HERO -->
+    <section class="hero" data-mobile-theme="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Coaching online personalizzato</p>
+          <h1>
+            Hai già fatto il primo passo.<br />
+            Ora costruiamo un percorso chiaro fino al traguardo.
+          </h1>
+          <p class="hero-subtitle">
+            Ti aiuto a migliorare forma fisica e stile di vita con allenamento,
+            nutrizione e supporto pensati per chi ha poco tempo ma vuole risultati reali.
+          </p>
+          <div class="hero-actions">
+            <a href="#consulenza" class="btn btn-primary">Prenota una consulenza gratuita</a>
+            <a href="#come-funziona" class="btn btn-outline">Scopri come funziona</a>
+          </div>
+          <div class="hero-tags">
+            <span>Allenamenti su misura</span>
+            <span>Nutrizione ragionata</span>
+            <span>Supporto continuo</span>
+          </div>
+        </div>
+
+        <!-- SLOT FOTO HERO -->
+        <div class="hero-media">
+          <div class="hero-photo">
+            <!-- Sostituisci con la tua immagine -->
+          </div>
+
+          <div class="hero-note">
+            <p class="hero-note-title">Coaching 100% online</p>
+            <p class="hero-note-body">
+              Percorsi costruiti sui tuoi impegni reali.
+            </p>
+          </div>
+
+          <!-- LOTTIE SOLO MOBILE -->
+          <div class="hero-lottie-mobile" aria-hidden="true">
+            <lottie-player
+              src="animations/hero-coaching.json"
+              background="transparent"
+              speed="1"
+              loop
+              autoplay>
+            </lottie-player>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORYLINE: COME FUNZIONA -->
+    <section id="come-funziona" class="section section-light" data-mobile-theme="flow">
+      <div class="container">
+        <div class="section-header center">
+          <p class="eyebrow">Come funziona il coaching</p>
+          <h2>Un percorso lineare, spiegato in 5 step.</h2>
+          <p class="section-subtitle">
+            Scorri la linea: ogni blocco racconta una fase chiave del lavoro insieme.
+          </p>
+        </div>
+
+        <div class="timeline" data-timeline>
+          <div class="timeline-line">
+            <div class="timeline-line-base"></div>
+            <div class="timeline-line-active"></div>
+          </div>
+
+          <div class="timeline-steps">
+
+            <!-- STEP 1 -->
+            <article class="timeline-step" data-step="1">
+              <div class="step-badge">01</div>
+              <div class="step-content">
+                <h3>Anamnesi completa</h3>
+                <p>
+                  Analizziamo la tua storia, le tue abitudini, gli orari e gli obiettivi.
+                </p>
+              </div>
+            </article>
+
+            <!-- STEP 2 -->
+            <article class="timeline-step" data-step="2">
+              <div class="step-badge">02</div>
+              <div class="step-content">
+                <h3>Programma di allenamento</h3>
+                <p>
+                  Costruito sui tuoi impegni, il tuo livello e le tue preferenze.
+                </p>
+              </div>
+            </article>
+
+            <!-- STEP 3 -->
+            <article class="timeline-step" data-step="3">
+              <div class="step-badge">03</div>
+              <div class="step-content">
+                <h3>Nutrizione ragionata</h3>
+                <p>
+                  Indicazioni pratiche, flessibili e sostenibili — niente diete rigide.
+                </p>
+              </div>
+            </article>
+
+            <!-- STEP 4 -->
+            <article class="timeline-step" data-step="4">
+              <div class="step-badge">04</div>
+              <div class="step-content">
+                <h3>Check & Aggiustamenti</h3>
+                <p>
+                  Modifichiamo il percorso quando serve, non quando “andrebbe fatto”.
+                </p>
+              </div>
+            </article>
+
+            <!-- STEP 5 -->
+            <article class="timeline-step" data-step="5">
+              <div class="step-badge">05</div>
+              <div class="step-content">
+                <h3>Mantenimento</h3>
+                <p>
+                  Consolidiamo abitudini, risultati e continuità a lungo termine.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="timeline-cta">
+          <a href="#consulenza" class="btn btn-primary">
+            Voglio capire se è adatto a me
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMMI -->
+    <section id="programmi" class="section" data-mobile-theme="programmi">
+      <div class="container">
+        <div class="section-header center">
+          <p class="eyebrow">Programmi</p>
+          <h2>Due percorsi, un solo obiettivo: farti migliorare.</h2>
+          <p class="section-subtitle">
+            Scegli se partire dal Base o lavorare a fondo con il Premium.
+          </p>
+        </div>
+
+        <div class="plans">
+
+          <!-- BASE -->
+          <article class="plan-card">
+            <h3>Coaching Base</h3>
+            <p class="plan-tag">Strutturato e sostenibile.</p>
+            <ul class="plan-list">
+              <li>Piano di allenamento personalizzato.</li>
+              <li>Linee guida nutrizionali.</li>
+              <li>Check programmati.</li>
+              <li>Supporto chat in orari concordati.</li>
+            </ul>
+            <p class="plan-note">
+              Per chi vuole una guida chiara senza confronto costante.
+            </p>
+            <a href="coaching-base.html" class="btn btn-outline plan-btn">
+              Scopri il Coaching Base
+            </a>
+          </article>
+
+          <!-- PREMIUM -->
+          <article class="plan-card plan-card-premium">
+            <div class="plan-ribbon">Premium</div>
+            <h3>Coaching Premium</h3>
+            <p class="plan-tag">Affiancamento stretto e dinamico.</p>
+            <ul class="plan-list">
+              <li>Tutto ciò che include il Base.</li>
+              <li>Aggiustamenti frequenti.</li>
+              <li>Video analisi tecnica.</li>
+              <li>Monitoraggio ravvicinato.</li>
+              <li>Risposte prioritarie.</li>
+            </ul>
+            <p class="plan-note">
+              Per chi vuole progressi costanti e attenzione al dettaglio.
+            </p>
+            <a href="coaching-premium.html" class="btn btn-primary plan-btn">
+              Voglio il Premium
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+    <!-- PERCHÉ È DIVERSO -->
+    <section id="leonardo-diverso" class="section section-different" data-mobile-theme="diverso">
+      <div class="container different-layout">
+
+		
+        <div class="marquee-wrapper">
+          <div class="marquee">
+            <span>PERCHÉ IL MIO COACHING È DIVERSO  </span>
+            <span>PERCHÉ IL MIO COACHING È DIVERSO  </span>
+            <span>PERCHÉ IL MIO COACHING È DIVERSO  </span>
+            <span>PERCHÉ IL MIO COACHING È DIVERSO  </span>
+            <span>PERCHÉ IL MIO COACHING È DIVERSO  </span>
+          </div>
+        </div>
+		
+
+        <!-- Colonna sinistra -->
+        <div class="different-left">
+          <h2>Perché questo coaching non è la solita scheda.</h2>
+          <p class="section-subtitle">
+            È un percorso seguito davvero: ci sono io, non solo un PDF. Il piano si adatta alla tua vita,
+            non il contrario.
+          </p>
+
+          <ul class="different-points">
+            <li>
+              <strong>Zero promesse “miracolose”</strong>:
+              lavoriamo su obiettivi coerenti con il tuo punto di partenza.
+            </li>
+            <li>
+              <strong>Metodo scientifico + pragmatismo</strong>:
+              le strategie devono funzionare anche quando lavori, studi e hai una vita.
+            </li>
+            <li>
+              <strong>Focus sul lungo termine</strong>:
+              non ti lascio con risultati che durano due mesi.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Colonna destra: card -->
+      <!-- Colonna destra: card -->
+<div class="different-right">
+  <!-- CARD 1 -->
+  <article class="different-item is-active" data-different-card>
+    <div class="different-head">
+      <div class="different-icon">
+        <i data-lucide="message-circle"></i>
+      </div>
+      <div class="different-head-text">
+        <p class="different-tag">PRESENTE</p>
+        <h3>Non sparisco dopo la scheda.</h3>
+      </div>
+    </div>
+    <p>
+      Non ti lascio solo con un file. Hai un contatto costante: feedback, aggiustamenti
+      e risposte ai dubbi che emergono nella vita reale.
+    </p>
+  </article>
+
+  <!-- CARD 2 -->
+  <article class="different-item" data-different-card>
+    <div class="different-head">
+      <div class="different-icon">
+        <i data-lucide="clock-3"></i>
+      </div>
+      <div class="different-head-text">
+        <p class="different-tag">LIBERA</p>
+        <h3>Non devi vivere in palestra.</h3>
+      </div>
+    </div>
+    <p>
+      Il piano viene costruito sui tuoi orari e sulle tue energie. Non serve allenarsi
+      6 volte a settimana per vedere risultati.
+    </p>
+  </article>
+
+  <!-- CARD 3 -->
+  <article class="different-item" data-different-card>
+    <div class="different-head">
+      <div class="different-icon">
+        <i data-lucide="refresh-ccw"></i>
+      </div>
+      <div class="different-head-text">
+        <p class="different-tag">DINAMICA</p>
+        <h3>Cambiamo quando serve.</h3>
+      </div>
+    </div>
+    <p>
+      Se cambiano i tuoi impegni o qualcosa non funziona, si adatta il percorso,
+      non ti do la colpa perché “non segui la scheda”.
+    </p>
+  </article>
+
+  <!-- CARD 4 -->
+  <article class="different-item" data-different-card>
+    <div class="different-head">
+      <div class="different-icon">
+        <i data-lucide="target"></i>
+      </div>
+      <div class="different-head-text">
+        <p class="different-tag">CONCRETA</p>
+        <h3>Contano i risultati, non le frasi motivazionali.</h3>
+      </div>
+    </div>
+    <p>
+      Lavoriamo su numeri e cambiamenti reali: carichi, misure, foto, energia.
+      Non su “ti devi impegnare di più” senza darti strumenti pratici.
+    </p>
+  </article>
+</div>
+</section>
+    <!-- FAQ -->
+    <section id="faq" class="section section-light" data-mobile-theme="faq">
+      <div class="container faq-layout">
+        <div class="faq-intro">
+          <p class="eyebrow">FAQ</p>
+          <h2>Domande frequenti sul coaching online.</h2>
+          <p class="section-subtitle">
+            Rispondo in anticipo alle domande che ricevo più spesso. Se hai un dubbio diverso,
+            puoi sempre scrivermi in consulenza.
+          </p>
+        </div>
+
+        <div class="faq-list" data-faq-list>
+          <!-- FAQ 1 -->
+          <article class="faq-item" data-faq-item>
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span class="faq-q-text">Quanto dura il percorso di coaching?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Il percorso non è “una scheda e via”. Ha più senso pensarla in blocchi di almeno 3 mesi:
+                il tempo necessario per vedere cambiamenti concreti e consolidarli. Molte persone scelgono
+                di continuare più a lungo per lavorare su fasi diverse (ricomposizione, forza, mantenimento).
+              </p>
+            </div>
+          </article>
+
+          <!-- FAQ 2 -->
+          <article class="faq-item" data-faq-item>
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span class="faq-q-text">Serve per forza la palestra o posso allenarmi a casa?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Possiamo lavorare sia in palestra che a casa. Il programma viene costruito sulle risorse
+                che hai davvero: tempo, attrezzatura, livello. L’importante è essere onesti su cosa puoi
+                fare davvero nella tua settimana tipo.
+              </p>
+            </div>
+          </article>
+
+          <!-- FAQ 3 -->
+          <article class="faq-item" data-faq-item>
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span class="faq-q-text">Mi darai una dieta rigida da seguire?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                No, niente diete da sopportare “per 4 settimane e poi basta”.
+                Lavoriamo con linee guida nutrizionali, distribuzione dei pasti,
+                gestione delle occasioni sociali e strategie sostenibili nel lungo periodo.
+              </p>
+            </div>
+          </article>
+
+          <!-- FAQ 4 -->
+          <article class="faq-item" data-faq-item>
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span class="faq-q-text">Come funziona il supporto durante il mese?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Hai check strutturati e la possibilità di aggiornarmi su come stai andando.
+                In base ai tuoi feedback, ai biofeedback (energia, sonno, fame, performance)
+                e agli imprevisti della tua vita reale, adattiamo allenamento e nutrizione.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATTI / CONSULENZA -->
+    <section id="contatti" class="section section-soft" data-mobile-theme="contatti">
+      <div class="container">
+        <div class="section-header center">
+          <p class="eyebrow">Contatti</p>
+          <h2>Il passo concreto è la consulenza gratuita.</h2>
+          <p class="section-subtitle">
+            Niente obblighi, niente trappole: analizziamo la tua situazione,
+            vediamo se posso aiutarti e quale percorso ha più senso per te.
+          </p>
+        </div>
+
+        <div id="consulenza" class="contact-layout">
+          <div class="contact-main">
+            <form class="contact-form">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="nome">Nome</label>
+                  <input type="text" id="nome" name="nome" placeholder="Il tuo nome" required />
+                </div>
+                <div class="form-field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="nome@example.com" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="obiettivo">Obiettivo principale</label>
+                  <input
+                    type="text"
+                    id="obiettivo"
+                    name="obiettivo"
+                    placeholder="Es. ricomposizione, forza, definizione..."
+                  />
+                </div>
+                <div class="form-field">
+                  <label for="esperienza">Esperienza di allenamento</label>
+                  <input
+                    type="text"
+                    id="esperienza"
+                    name="esperienza"
+                    placeholder="Principiante, intermedio, avanzato..."
+                  />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="messaggio">Raccontami qualcosa di te</label>
+                <textarea
+                  id="messaggio"
+                  name="messaggio"
+                  rows="4"
+                  placeholder="Orari, lavoro, eventuali infortuni o limiti, cosa hai già provato."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full">
+                Richiedi la consulenza gratuita
+              </button>
+            </form>
+          </div>
+
+          <aside class="contact-side">
+            <div class="contact-card">
+              <h3>Cosa succede dopo che mi scrivi</h3>
+              <ol class="contact-steps">
+                <li>Leggo il tuo messaggio e ti rispondo personalmente via email.</li>
+                <li>Se ha senso, fissiamo una call conoscitiva gratuita.</li>
+                <li>Ti propongo il percorso più adatto (Base o Premium) e decidi tu se iniziare.</li>
+              </ol>
+            </div>
+
+            <div class="contact-card light">
+              <h3>Altri contatti</h3>
+              <p>
+                Email: <strong>tua-email@example.com</strong><br />
+                Instagram: <strong>@tuo_profilo_ig</strong>
+              </p>
+              <p class="small-note">
+                Aggiorna questi dati con i tuoi contatti reali.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Leonardo Santini. Tutti i diritti riservati.</p>
+      <div class="footer-links">
+        <a href="#come-funziona">Come funziona</a>
+        <a href="#programmi">Programmi</a>
+        <a href="contenuti-gratuiti.html">Contenuti gratuiti</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
