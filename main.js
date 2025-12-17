@@ -5,7 +5,19 @@ const mainNav = document.querySelector('.main-nav');
 if (burger && mainNav) {
   burger.addEventListener('click', () => {
     mainNav.classList.toggle('open');
-burger.classList.toggle("is-open");
+    const isOpen = mainNav.classList.contains('open');
+    burger.classList.toggle('is-open', isOpen);
+    document.body.classList.toggle('nav-open', isOpen);
+  });
+
+  mainNav.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (window.matchMedia('(max-width: 900px)').matches) {
+        mainNav.classList.remove('open');
+        burger.classList.remove('is-open');
+        document.body.classList.remove('nav-open');
+      }
+    });
   });
 }
 
