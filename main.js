@@ -604,6 +604,40 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// ANIMAZIONI TABELLE MOBILE (programmi + consulenza)
+document.addEventListener('DOMContentLoaded', () => {
+  if (!window.gsap || !window.ScrollTrigger) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+  const tables = gsap.utils.toArray('[data-animated-table]');
+  if (!tables.length) return;
+
+  const mm = gsap.matchMedia();
+
+  mm.add('(max-width: 900px)', () => {
+    tables.forEach((table) => {
+      const rows = table.querySelectorAll('.matrix-row, .consult-row');
+      rows.forEach((row, index) => {
+        gsap.from(row, {
+          opacity: 0,
+          y: 26,
+          duration: 0.55,
+          ease: 'power3.out',
+          delay: index * 0.06,
+          scrollTrigger: {
+            trigger: table,
+            start: 'top 85%',
+          },
+        });
+
+        row.addEventListener('pointerdown', () => row.classList.add('is-pressed'));
+        row.addEventListener('pointerup', () => row.classList.remove('is-pressed'));
+        row.addEventListener('pointerleave', () => row.classList.remove('is-pressed'));
+      });
+    });
+  });
+});
+
 
 // COACHING BASE – toggle prezzo (Base vs Base + lezione)
 document.addEventListener('DOMContentLoaded', () => {
