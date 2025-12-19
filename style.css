@@ -858,119 +858,72 @@ color: #111827;
 
 /* ===== TABELLA DI CONFRONTO – MOBILE ===== */
 .comparison-table-mobile {
-  display: none; /* di default nascosta (desktop) */
-}
-
-@media (max-width: 900px) {
-  /* Nascondo le card su mobile */
-  .comparison-grid {
-    display: none;
-  }
-
-  .comparison-table-mobile {
-    display: block;
-    margin-top: 2rem;
-    overflow-x: auto; /* se lo schermo è stretto, scroll orizzontale */
-  }
-
-  .comparison-table-mobile table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 620px; /* così le 3 colonne hanno respiro e puoi scrollare */
-    font-size: 0.9rem;
-  }
-
-  .comparison-table-mobile th,
-  .comparison-table-mobile td {
-    padding: 0.55rem 0.4rem;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.4);
-    text-align: left;
-    vertical-align: top;
-  }
-
-  .comparison-table-mobile thead th {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    opacity: 0.85;
-    white-space: nowrap;
-  }
-
-  .comparison-table-mobile tbody th {
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  .comparison-table-mobile .col-highlight {
-    background: linear-gradient(135deg, #d6f8ff, #ffffff);
-    border-left: 2px solid rgba(25, 218, 213, 0.65);
-  }
-
-  .comparison-table-mobile .row-price td {
-    font-weight: 600;
-  }
-}
-/* ===== TABELLA DI CONFRONTO – MOBILE ===== */
-
-.comparison-table-mobile {
+  display: none;
   margin-top: 2rem;
 }
 
-/* Desktop: nascondo la tabella, mostro le card */
-@media (min-width: 901px) {
-  .comparison-table-mobile {
-    display: none;
-  }
-}
-
-/* Mobile: nascondo le card, mostro la tabella */
-/* ===== VALORE – TABELLA MOBILE (CHIARA, 2 COLONNE) ===== */
-
-.comparison-table-mobile {
-  display: none;
-}
-
-/* Desktop: solo card */
-@media (min-width: 901px) {
-  .comparison-table-mobile {
-    display: none;
-  }
-}
-
-/* Mobile: tabella al posto delle card */
 @media (max-width: 900px) {
-
   .comparison-grid {
     display: none;
   }
 
   .comparison-table-mobile {
     display: block;
-    margin-top: 1.6rem;
   }
 
   .comparison-table-card {
-    background: #f8fafc; /* chiaro, non più dark */
+    position: relative;
+    background: #f8fafc;
     border-radius: 18px;
-    padding: 1.1rem 0.9rem;
+    padding: 1rem 0.9rem 1.35rem;
     border: 1px solid rgba(148, 163, 184, 0.55);
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #00c2b3 transparent;
+    transition: box-shadow 0.25s ease, transform 0.22s ease;
+  }
+
+  .comparison-table-card::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .comparison-table-card::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, #4ef2cf, #22c1c3);
+    border-radius: 999px;
+  }
+
+  .comparison-table-card:hover,
+  .comparison-table-card:focus-within {
+    box-shadow: 0 14px 46px rgba(15, 23, 42, 0.13);
+    transform: translateY(-3px);
   }
 
   .comparison-table-card table {
     width: 100%;
+    min-width: 680px;
     border-collapse: collapse;
-    font-size: 0.82rem;
+    font-size: 0.86rem;
+    table-layout: fixed;
+    transition: transform 0.18s ease;
   }
 
   .comparison-table-card thead th {
-    font-size: 0.72rem;
+    font-size: 0.74rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    padding: 0 0.3rem 0.6rem;
+    padding: 0 0.4rem 0.7rem;
     opacity: 0.85;
     text-align: left;
     white-space: nowrap;
     color: #475569;
+  }
+
+  .comparison-table-card thead th:first-child,
+  .comparison-table-card tbody th {
+    width: clamp(88px, 24vw, 140px);
+    min-width: clamp(88px, 24vw, 140px);
   }
 
   .comparison-table-card thead th.th-me {
@@ -982,29 +935,34 @@ color: #111827;
   }
 
   .comparison-table-card tbody th {
-    font-weight: 600;
-    padding: 0.55rem 0.35rem 0.55rem 0;
+    font-weight: 700;
+    padding: 0.55rem 0.45rem 0.55rem 0;
     vertical-align: top;
-    width: 26%;
     color: #0f172a;
-    font-size: 0.8rem;
+    font-size: 0.82rem;
   }
 
   .comparison-table-card tbody td {
-    padding: 0.55rem 0.35rem;
+    padding: 0.55rem 0.45rem;
     vertical-align: top;
     color: #334155;
   }
 
   .comparison-table-card tbody tr {
     border-bottom: 1px solid rgba(148, 163, 184, 0.6);
+    transition: background-color 0.18s ease, transform 0.16s ease;
   }
 
   .comparison-table-card tbody tr:last-child {
     border-bottom: none;
   }
 
-  /* colonna "Percorso con me" in evidenza */
+  .comparison-table-card tbody tr:hover,
+  .comparison-table-card tbody tr:focus-within {
+    background: rgba(78, 242, 207, 0.08);
+    transform: translateX(2px);
+  }
+
   .comparison-table-card tbody td:nth-child(3) {
     background: linear-gradient(
       135deg,
@@ -1015,7 +973,7 @@ color: #111827;
   }
 
   .comparison-table-card .row-price td {
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .comparison-table-card .row-price .col-me {
@@ -1024,157 +982,21 @@ color: #111827;
     border-radius: 999px;
     text-align: center;
     padding: 0.55rem 0.4rem;
-  }
-}
-/* --- MOBILE: usa SOLO la nuova tabella --- */
-@media (max-width: 900px) {
-
-  /* Nasconde completamente la tabella desktop */
-  .comparison-table {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    overflow: hidden !important;
+    box-shadow: 0 10px 24px rgba(34, 193, 195, 0.28);
   }
 
-  /* Mostra la versione mobile */
-  .comparison-table-mobile {
-    display: block !important;
-  }
-}
-
-/* FIX MOBILE: niente scroll orizzontale, testo sempre dentro al box */
-@media (max-width: 900px) {
-
-  /* la tabella deve stare dentro al contenitore */
-  .comparison-table-card {
-    overflow: hidden;
-  }
-
-  .comparison-table-card table {
-    width: 100%;
-    table-layout: fixed;      /* colonne “forzate” a stare dentro */
-  }
-
-  /* permettiamo alle scritte di andare a capo */
-  .comparison-table-card thead th,
-  .comparison-table-card tbody th,
-  .comparison-table-card tbody td {
-    white-space: normal;      /* sovrascrive il nowrap di prima */
-    word-break: break-word;   /* se una parola è lunga, va a capo */
-  }
-}
-/* MOBILE — riduci distanza tra prima e seconda colonna */
-@media (max-width: 900px) {
-
-  /* stringi la larghezza della prima colonna */
-  .comparison-table-card table tbody th {
-    width: 110px;      /* puoi scendere anche a 95–100 */
-    min-width: 110px;
-    padding-right: 0.7rem;  /* meno spazio fra le colonne */
-  }
-
-  /* riduci padding cella seconda colonna */
-  .comparison-table-card table tbody td {
-    padding-left: 0.6rem !important;
-    padding-right: 0.6rem !important;
-  }
-
-  /* anche l’intestazione si stringe */
-  .comparison-table-card thead th:first-child {
-    width: 110px;
-    min-width: 110px;
-  }
-}
-/* ==== MOBILE: SCROLL ORIZZONTALE COMPLETO PER LA TABELLA === */
-@media (max-width: 900px) {
-
-  /* Contenitore scrollabile */
-  .comparison-table-card {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: #00c2b3 transparent;
-  }
-
-  /* Tabella molto larga così non si tronca */
-  .comparison-table-card table {
-    width: 900px !important; /* assicura tutto lo spazio per scrollare */
-    min-width: 900px !important;
-    border-collapse: collapse;
-  }
-
-  /* Riduci distanza tra prima e seconda colonna */
-  .comparison-table-card table tbody th,
-  .comparison-table-card table thead th:first-child {
-    width: 110px !important;
-    min-width: 110px !important;
-    padding-right: 0.6rem !important;
-  }
-
-  /* Celle della colonna "Percorso con me" */
-  .comparison-table-card table tbody td {
-    padding-left: 0.6rem !important;
-    padding-right: 0.6rem !important;
-  }
-}
-/* ==== MOBILE: SCROLL ORIZZONTALE COMPLETO + TABELLAA PIÙ STRETTA === */
-@media (max-width: 900px) {
-
-  .comparison-table-card {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: #00c2b3 transparent;
-  }
-
-  /* Tabella più stretta = scroll più corto */
-  .comparison-table-card table {
-    width: 780px !important;     /* ↓ era 900px */
-    min-width: 780px !important;
-    border-collapse: collapse;
-  }
-
-  /* Colonna 1 ancora più stretta */
-  .comparison-table-card table tbody th,
-  .comparison-table-card table thead th:first-child {
-    width: 90px !important;      /* ↓ era 110px */
-    min-width: 90px !important;
-    padding-right: 0.45rem !important;
-  }
-
-  /* Celle colonna 2 più compatte */
-  .comparison-table-card table tbody td {
-    padding-left: 0.45rem !important;
-    padding-right: 0.45rem !important;
-  }
-}
-/* Contenitore scrollabile */
-
-@media (max-width: 900px) {
-
-  .comparison-table-card {
-    position: relative;
-  }
-
-
-
-  /* FRECCIA SUPER VISIBILE */
   .scroll-hint {
     position: absolute;
-    right: 30px;
-    top: 30px;
+    right: 24px;
+    top: 22px;
     transform: translateY(-50%);
-    
-    font-size: 2.6rem;   /* più grande */
+    font-size: 2.2rem;
     font-weight: 800;
     color: #00e2cf;
-    text-shadow: 0px 0px 16px rgba(0, 226, 207, 0.85);
-
-    z-index: 5 !important; /* SOPRA TUTTO */
+    text-shadow: 0px 0px 16px rgba(0, 226, 207, 0.7);
+    z-index: 5;
     animation: hintMove 1.4s infinite ease-in-out;
+    pointer-events: none;
   }
 
   @keyframes hintMove {
@@ -1184,7 +1006,7 @@ color: #111827;
     }
     50% {
       opacity: 1;
-      transform: translate(12px, -50%) scale(1.1);
+      transform: translate(10px, -50%) scale(1.06);
     }
     100% {
       opacity: 0.4;
