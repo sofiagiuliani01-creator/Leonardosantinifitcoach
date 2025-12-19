@@ -3,14 +3,16 @@ const burger = document.querySelector('.burger');
 const mainNav = document.querySelector('.main-nav');
 
 if (burger && mainNav) {
+  burger.setAttribute('aria-expanded', 'false');
   burger.addEventListener('click', () => {
     mainNav.classList.toggle('open');
     const isOpen = mainNav.classList.contains('open');
     burger.classList.toggle('is-open', isOpen);
     document.body.classList.toggle('nav-open', isOpen);
+    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   });
 
-  mainNav.querySelectorAll('a[href^="#"]').forEach((link) => {
+  mainNav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       if (window.matchMedia('(max-width: 900px)').matches) {
         mainNav.classList.remove('open');
