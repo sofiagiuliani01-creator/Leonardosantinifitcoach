@@ -170,10 +170,58 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 // FAQ INTERATTIVE (ACCORDION)
 document.addEventListener('DOMContentLoaded', () => {
   const faqItems = document.querySelectorAll('[data-faq-item]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!faqItems.length) return;
 
-  faqItems.forEach((item) => {
+  const closeItem = (item) => {
+    const btn = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!btn || !answer) return;
+
+    const measuredHeight = answer.scrollHeight;
+    if (answer.style.maxHeight === 'none') {
+      answer.style.maxHeight = `${measuredHeight}px`;
+    }
+
+    requestAnimationFrame(() => {
+      item.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      answer.style.maxHeight = '0px';
+    });
+  };
+
+  const openItem = (item) => {
+    const btn = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!btn || !answer) return;
+
+    item.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    const targetHeight = `${answer.scrollHeight}px`;
+
+    if (prefersReducedMotion) {
+      answer.style.maxHeight = 'none';
+      return;
+    }
+
+    answer.style.maxHeight = '0px';
+    requestAnimationFrame(() => {
+      answer.style.maxHeight = targetHeight;
+    });
+
+    const settleHeight = (event) => {
+      if (event.propertyName !== 'max-height') return;
+      if (item.classList.contains('is-open')) {
+        answer.style.maxHeight = 'none';
+      }
+      answer.removeEventListener('transitionend', settleHeight);
+    };
+
+    answer.addEventListener('transitionend', settleHeight);
+  };
+
+  faqItems.forEach((item, index) => {
     const btn = item.querySelector('.faq-question');
     const answer = item.querySelector('.faq-answer');
 
@@ -182,26 +230,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // stato iniziale
     answer.style.maxHeight = '0px';
     btn.setAttribute('aria-expanded', 'false');
+    const answerId = answer.id || `faq-answer-${index + 1}`;
+    answer.id = answerId;
+    btn.setAttribute('aria-controls', answerId);
+    answer.setAttribute('role', 'region');
 
     btn.addEventListener('click', () => {
       const isOpen = item.classList.contains('is-open');
 
-      // chiudi tutte
       faqItems.forEach((other) => {
-        const otherBtn = other.querySelector('.faq-question');
-        const otherAnswer = other.querySelector('.faq-answer');
-        if (!otherBtn || !otherAnswer) return;
-        other.classList.remove('is-open');
-        otherBtn.setAttribute('aria-expanded', 'false');
-        otherAnswer.style.maxHeight = '0px';
+        if (other === item) return;
+        closeItem(other);
       });
 
-      // se prima era chiusa, apri questa
-      if (!isOpen) {
-        item.classList.add('is-open');
-        btn.setAttribute('aria-expanded', 'true');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
+      if (isOpen) {
+        closeItem(item);
+        return;
       }
+
+      openItem(item);
     });
   });
 });
