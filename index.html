@@ -49,26 +49,33 @@
   </header>
   <main class="page-shell">
     <!-- HERO -->
-    <section class="hero" data-mobile-theme="hero">
-      <div class="container hero-inner">
+    <section class="hero hero-premium" data-mobile-theme="hero">
+      <div class="container hero-inner hero-grid">
         <div class="hero-text">
           <p class="eyebrow">Coaching online personalizzato</p>
           <h1>
-            Hai già fatto il primo passo.<br />
-            Ora costruiamo un percorso chiaro fino al traguardo.
+            Percorso sartoriale, zero caos.<br />
+            Cura premium dalla prima settimana.
           </h1>
           <p class="hero-subtitle">
-            Ti aiuto a migliorare forma fisica e stile di vita con allenamento,
-            nutrizione e supporto pensati per chi ha poco tempo ma vuole risultati reali.
+            Alleno mente e fisico con un metodo pensato per vite piene: programmazione evolutiva,
+            nutrizione che segue i tuoi ritmi, feedback veloci. Tutto in un’interfaccia elegante e leggera.
           </p>
           <div class="hero-actions">
             <a href="#consulenza" class="btn btn-primary">Prenota una consulenza gratuita</a>
-            <a href="#come-funziona" class="btn btn-outline">Scopri come funziona</a>
+            <a href="#come-funziona" class="btn btn-outline">Guarda il flusso</a>
           </div>
-          <div class="hero-tags">
-            <span>Allenamenti su misura</span>
-            <span>Nutrizione ragionata</span>
-            <span>Supporto continuo</span>
+
+          <div class="hero-ribbon">
+            <span class="ribbon-dot"></span>
+            Experience su misura, risposta entro 24h, materiali premium.
+          </div>
+
+          <div class="hero-pills">
+            <span class="pill">Allenamento ciclico</span>
+            <span class="pill">Nutrizione modulata</span>
+            <span class="pill">Check vocali e video</span>
+            <span class="pill">Dashboard mobile</span>
           </div>
 
           <div class="hero-metrics">
@@ -87,20 +94,54 @@
           </div>
         </div>
 
-        <!-- SLOT FOTO HERO -->
         <div class="hero-media">
-          <div class="hero-photo">
-            <!-- Sostituisci con la tua immagine -->
+          <div class="hero-orb" aria-hidden="true"></div>
+          <div class="hero-panel">
+            <div class="hero-panel-header">
+              <span class="panel-badge">Modalità Premium</span>
+              <span class="panel-dot"></span>
+            </div>
+            <div class="hero-panel-body">
+              <div class="panel-row">
+                <p class="panel-label">Allenamento</p>
+                <p class="panel-value">Evolutivo + video-check</p>
+              </div>
+              <div class="panel-row">
+                <p class="panel-label">Nutrizione</p>
+                <p class="panel-value">Strategie per lavoro e viaggi</p>
+              </div>
+              <div class="panel-row">
+                <p class="panel-label">Supporto</p>
+                <p class="panel-value highlight">Risposte prioritarie 24/7*</p>
+              </div>
+              <div class="panel-note">*in fascia concordata, reale priorità.</div>
+            </div>
+            <div class="hero-panel-footer">
+              <div class="panel-chip">
+                <i data-lucide="activity"></i>
+                Progressi tracciati in tempo reale
+              </div>
+              <div class="panel-chip">
+                <i data-lucide="sparkles"></i>
+                Micro-animazioni su mobile pronte
+              </div>
+            </div>
           </div>
 
-          <div class="hero-note">
-            <p class="hero-note-title">Coaching 100% online</p>
-            <p class="hero-note-body">
-              Percorsi costruiti sui tuoi impegni reali.
-            </p>
+          <div class="hero-floating">
+            <div class="floating-card">
+              <p class="floating-title">Timeline premium</p>
+              <p class="floating-sub">Card compatte, swipe orizzontale, CTA sempre in vista.</p>
+              <div class="floating-progress">
+                <span style="width: 86%"></span>
+              </div>
+            </div>
+            <div class="floating-badge">
+              <i data-lucide="smartphone"></i>
+              Pensato per il telefono
+            </div>
           </div>
 
-          <!-- LOTTIE SOLO MOBILE -->
           <div class="hero-lottie-mobile" aria-hidden="true">
             <lottie-player
               src="animations/hero-coaching.json"
@@ -117,7 +158,7 @@
             <div>
               <p class="matrix-eyebrow">Vista mobile super rapida</p>
               <h3>Tabella dinamica Base vs Premium</h3>
-              <p class="matrix-sub">Scorri orizzontalmente: le celle reagiscono al tocco con micro-animazioni.</p>
+              <p class="matrix-sub">Scroll orizzontale con tocchi reattivi e glow in tempo reale.</p>
             </div>
             <div class="matrix-pulse" aria-hidden="true"></div>
           </div>
@@ -153,6 +194,61 @@
               <span class="matrix-cell matrix-cell--glow">Vuole migliorare ogni dettaglio con feedback rapidi.</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEZIONE PREMIUM EXPERIENCE -->
+    <section class="section premium-experience" aria-label="Esperienza premium">
+      <div class="container experience-layout">
+        <div class="experience-copy">
+          <p class="eyebrow">Nuovo layout</p>
+          <h2>Less card, more flow.</h2>
+          <p class="section-subtitle">Interfaccia a scorrimento fluido, card a blocchi compatti, animazioni ispirate alle app premium. Zero feeling da “lista di card”, tutto vive in un’unica superficie.</p>
+          <div class="experience-chips">
+            <span class="pill">Swipe orizzontale</span>
+            <span class="pill">Microinterazioni GSAP</span>
+            <span class="pill">Glow dinamici</span>
+          </div>
+        </div>
+
+        <div class="experience-rail" data-horizontal-rail>
+          <article class="experience-card">
+            <div class="card-top">
+              <i data-lucide="grid"></i>
+              <span class="chip">Dashboard</span>
+            </div>
+            <h3>Un’unica schermata elegante.</h3>
+            <p>Timeline, CTA e riepilogo check in un pannello glass, sempre leggibile anche su telefoni piccoli.</p>
+            <div class="card-meters">
+              <span style="width: 78%"></span>
+              <span style="width: 92%"></span>
+            </div>
+          </article>
+
+          <article class="experience-card">
+            <div class="card-top">
+              <i data-lucide="sparkles"></i>
+              <span class="chip">Animazioni</span>
+            </div>
+            <h3>Motion design morbido.</h3>
+            <p>Fade, parallax e gradient shift. L’esperienza resta premium senza rallentare.</p>
+            <div class="card-pill-row">
+              <span>ScrollTrigger</span>
+              <span>Hover 3D</span>
+              <span>Glow Pulse</span>
+            </div>
+          </article>
+
+          <article class="experience-card">
+            <div class="card-top">
+              <i data-lucide="message-circle"></i>
+              <span class="chip">Supporto</span>
+            </div>
+            <h3>Conversazioni rapide.</h3>
+            <p>Chat prioritaria, note vocali e reminder intelligenti: ogni messaggio riceve follow-up chiaro.</p>
+            <div class="card-badge">24h Response</div>
+          </article>
         </div>
       </div>
     </section>

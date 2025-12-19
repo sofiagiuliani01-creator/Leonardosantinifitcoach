@@ -625,6 +625,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// HERO E EXPERIENCE CARD — riflesso premium anche su hero panel e rail
+document.addEventListener('DOMContentLoaded', () => {
+  const reflective = document.querySelectorAll('.hero-panel, .experience-card');
+  if (!reflective.length) return;
+
+  const setRef = (el, x, y) => {
+    const rect = el.getBoundingClientRect();
+    const mx = ((x - rect.left) / rect.width) * 100;
+    const my = ((y - rect.top) / rect.height) * 100;
+    el.style.setProperty('--mx', `${mx}%`);
+    el.style.setProperty('--my', `${my}%`);
+  };
+
+  reflective.forEach((el) => {
+    el.addEventListener('mousemove', (e) => setRef(el, e.clientX, e.clientY));
+    el.addEventListener('touchmove', (e) => {
+      const t = e.touches[0];
+      if (!t) return;
+      setRef(el, t.clientX, t.clientY);
+    }, { passive: true });
+  });
+});
+
 // ANIMAZIONI TABELLE MOBILE (programmi + consulenza)
 document.addEventListener('DOMContentLoaded', () => {
   if (!window.gsap || !window.ScrollTrigger) return;
