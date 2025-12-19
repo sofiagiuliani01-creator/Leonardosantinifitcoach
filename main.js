@@ -25,35 +25,67 @@ if (burger && mainNav) {
 const timelineEl = document.querySelector('[data-timeline]');
 if (timelineEl) {
   const steps = Array.from(timelineEl.querySelectorAll('.timeline-step'));
+  const stepsContainer = timelineEl.querySelector('.timeline-steps');
   const activeLine = timelineEl.querySelector('.timeline-line-active');
 
-  function updateActiveLine(index) {
+  const desktopMedia = window.matchMedia('(min-width: 901px)');
+  let observer = null;
+  let mobileScrollHandler = null;
+  let mobileResizeHandler = null;
+  let currentMode = null;
+
+  const updateActiveLine = (index) => {
     if (!activeLine || steps.length <= 1) return;
     const ratio = index / (steps.length - 1 || 1);
-    // la linea va da 10% a 90% in base allo step
     const percent = 10 + ratio * 80;
     activeLine.style.height = percent + '%';
-  }
+  };
 
-  // Attiva il primo step subito
-  if (steps.length > 0) {
-    steps[0].classList.add('is-active');
-    updateActiveLine(0);
-  }
+  const activateByIndex = (index) => {
+    const clamped = Math.max(0, Math.min(index, steps.length - 1));
+    steps.forEach((step, i) => {
+      step.classList.toggle('is-active', i === clamped);
+    });
+    updateActiveLine(clamped);
+  };
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
+  const teardownDesktop = () => {
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
+  };
+
+  const teardownMobile = () => {
+    if (stepsContainer && mobileScrollHandler) {
+      stepsContainer.removeEventListener('scroll', mobileScrollHandler);
+      mobileScrollHandler = null;
+    }
+    if (mobileResizeHandler) {
+      window.removeEventListener('resize', mobileResizeHandler);
+      mobileResizeHandler = null;
+    }
+  };
+
+  const setupDesktopTimeline = () => {
+    if (currentMode === 'desktop') return;
+    teardownMobile();
+    currentMode = 'desktop';
+    activateByIndex(0);
+
+    if (!('IntersectionObserver' in window)) {
+      steps.forEach((s) => s.classList.add('is-active'));
+      activateByIndex(steps.length - 1);
+      return;
+    }
+
+    observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const step = entry.target;
-          if (entry.isIntersecting) {
-            steps.forEach((s) => s.classList.remove('is-active'));
-            step.classList.add('is-active');
-
-            const index = steps.indexOf(step);
-            if (index >= 0) {
-              updateActiveLine(index);
-            }
+          if (!entry.isIntersecting) return;
+          const index = steps.indexOf(entry.target);
+          if (index >= 0) {
+            activateByIndex(index);
           }
         });
       },
@@ -64,11 +96,56 @@ if (timelineEl) {
     );
 
     steps.forEach((step) => observer.observe(step));
-  } else {
-    // Browser vecchi: mostra tutto e linea piena
-    steps.forEach((s) => s.classList.add('is-active'));
-    updateActiveLine(steps.length - 1);
-  }
+  };
+
+  const setupMobileSlider = () => {
+    if (currentMode === 'mobile') return;
+    teardownDesktop();
+    currentMode = 'mobile';
+    activateByIndex(0);
+
+    if (!stepsContainer) return;
+
+    // garantisce lo scroll orizzontale su touch
+    stepsContainer.style.touchAction = 'pan-x';
+
+    mobileScrollHandler = () => {
+      const rect = stepsContainer.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+
+      let bestIndex = 0;
+      let bestDist = Infinity;
+
+      steps.forEach((step, index) => {
+        const r = step.getBoundingClientRect();
+        const stepCenter = r.left + r.width / 2;
+        const dist = Math.abs(stepCenter - centerX);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIndex = index;
+        }
+      });
+
+      activateByIndex(bestIndex);
+    };
+
+    stepsContainer.addEventListener('scroll', mobileScrollHandler, { passive: true });
+    mobileResizeHandler = () => mobileScrollHandler();
+    window.addEventListener('resize', mobileResizeHandler);
+
+    mobileScrollHandler();
+  };
+
+  const handleTimelineMode = () => {
+    if (desktopMedia.matches) {
+      setupDesktopTimeline();
+    } else {
+      setupMobileSlider();
+    }
+  };
+
+  handleTimelineMode();
+  desktopMedia.addEventListener('change', handleTimelineMode);
 }
 
 // SMOOTH SCROLL PER I LINK CON #
@@ -422,111 +499,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     }
-
-    // ---------- 3) TIMELINE: ENTRATA STEP ----------
-// ---------- 3) TIMELINE: SOLO LA CARD ATTIVA È PIENA ----------
-// STORYLINE / TIMELINE – mobile slider orizzontale con card attiva
-const timelineEl = document.querySelector('[data-timeline]');
-
-if (timelineEl) {
-  const steps = Array.from(timelineEl.querySelectorAll('.timeline-step'));
-  const activeLine = timelineEl.querySelector('.timeline-line-active');
-  const stepsContainer = timelineEl.querySelector('.timeline-steps');
-
-  if (!steps.length || !stepsContainer) {
-    console.warn('Timeline: mancano step o container');
-  } else {
-
-    // attiva una card per indice e aggiorna eventuale linea
-    const activateByIndex = (index) => {
-      const clamped = Math.max(0, Math.min(index, steps.length - 1));
-      steps.forEach((s, i) => {
-        s.classList.toggle('is-active', i === clamped);
-      });
-
-      if (activeLine && steps.length > 1) {
-        const ratio = clamped / (steps.length - 1 || 1);
-        const percent = 10 + ratio * 80; // 10% -> 90%
-        activeLine.style.height = percent + '%';
-      }
-    };
-
-    // ----- MOBILE: slider orizzontale -----
-    const setupMobileSlider = () => {
-      const updateActiveFromScroll = () => {
-        const rect = stepsContainer.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-
-        let bestIndex = 0;
-        let bestDist = Infinity;
-
-        steps.forEach((step, index) => {
-          const r = step.getBoundingClientRect();
-          const stepCenter = r.left + r.width / 2;
-          const dist = Math.abs(stepCenter - centerX);
-          if (dist < bestDist) {
-            bestDist = dist;
-            bestIndex = index;
-          }
-        });
-
-        activateByIndex(bestIndex);
-      };
-
-      // aggiorna su scroll orizzontale del container
-      stepsContainer.addEventListener('scroll', updateActiveFromScroll, { passive: true });
-      window.addEventListener('resize', updateActiveFromScroll);
-
-      // prima chiamata
-      updateActiveFromScroll();
-    };
-
-    // ----- DESKTOP: comportamento originale con IntersectionObserver -----
-    const setupDesktopTimeline = () => {
-      if (!('IntersectionObserver' in window)) {
-        // fallback: tutte attive e linea piena
-        steps.forEach((s) => s.classList.add('is-active'));
-        activateByIndex(steps.length - 1);
-        return;
-      }
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            const step = entry.target;
-            const index = steps.indexOf(step);
-            if (index >= 0) {
-              activateByIndex(index);
-            }
-          });
-        },
-        {
-          root: null,
-          threshold: 0.5,
-        }
-      );
-
-      steps.forEach((step) => observer.observe(step));
-    };
-
-    // switch tra mobile e desktop
-    const initTimelineMode = () => {
-      if (window.innerWidth <= 900) {
-        setupMobileSlider();
-      } else {
-        setupDesktopTimeline();
-      }
-    };
-
-    initTimelineMode();
-
-    window.addEventListener('resize', () => {
-      // opzionale: se cambi spesso dimensione, potresti voler re-inizializzare
-      // qui si potrebbe fare un debounce, ma su mobile di solito non serve
-    });
-  }
-}
 
     // ---------- 4) PROGRAMMI: SOLLEVAMENTO CARD ----------
     const planCards = gsap.utils.toArray('.plan-card');
