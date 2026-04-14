@@ -652,6 +652,62 @@ body.nav-open::after {
   display: none;
 }
 
+.hero-runner-svg {
+  width: min(240px, 72vw);
+  height: auto;
+  margin: 1rem auto 0;
+  display: block;
+  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.35));
+}
+
+.runner-bg {
+  fill: rgba(147, 182, 255, 0.16);
+  stroke: rgba(147, 182, 255, 0.5);
+  stroke-width: 2;
+}
+
+.runner-figure {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.runner-skin {
+  fill: #f4b491;
+}
+
+.runner-torso {
+  fill: #73a7ff;
+}
+
+.runner-arm-front,
+.runner-arm-back {
+  fill: #8dc4ff;
+}
+
+.runner-leg {
+  fill: #5d9bff;
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: runnerLeg 0.9s ease-in-out infinite alternate;
+}
+
+.runner-leg-back {
+  animation-delay: -0.45s;
+}
+
+.runner-leg-front {
+  animation-delay: 0s;
+}
+
+@keyframes runnerLeg {
+  from {
+    transform: rotate(16deg);
+  }
+  to {
+    transform: rotate(-16deg);
+  }
+}
+
 .hero-metrics {
   margin: 1.4rem 0 0;
   display: grid;
